@@ -1,0 +1,52 @@
+#LZW CODE
+import sys
+
+dicti=[]
+p=""
+c=""
+output=[]
+en=""
+string=""" YOUR STRING"""
+dicti=list(set(string))
+dicti=sorted(dicti)
+
+def comp(string):
+  print("Dictionary before:",dicti)
+  global p
+  global en
+  for c in string:
+    if p+c in dicti:
+      p=p+c
+    
+    else:
+      i=dicti.index(p)
+      output.append(i)
+  
+      dicti.append(p+c)
+    
+      p=c
+     
+  r=string[-1]
+  output.append(dicti.index(r))
+  print("5",output)   
+  en="".join(map(str,output))
+  print(en)
+  print("size2 in bytes",sys.getsizeof(en))
+  
+#with open('data.txt', 'r') as myfile:
+#    string=myfile.read().replace('\n', '')  #if you are your using a txt file.
+
+comp(string)
+print("size1",sys.getsizeof(string))
+print(output)
+print(dicti)
+u=""
+
+def uncomp(output,dicti,u):
+  for i in output:
+    print(dicti[i],end="")
+    
+  
+  
+ 
+decode=uncomp(output,dicti,u)
